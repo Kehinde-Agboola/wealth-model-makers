@@ -8,13 +8,13 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 255 255 255;
+    --background: 39 25% 97%;
     --foreground: 179 79% 13%;
 
-    --card: 255 255 255;
+    --card: 39 20% 99%;
     --card-foreground: 179 79% 13%;
 
-    --popover: 255 255 255;
+    --popover: 39 20% 99%;
     --popover-foreground: 179 79% 13%;
 
     --primary: 161 82% 24%;
@@ -24,8 +24,8 @@ All colors MUST be HSL.
     --secondary: 144 90% 33%;
     --secondary-foreground: 255 255 255;
 
-    --muted: 179 20% 96%;
-    --muted-foreground: 179 15% 45%;
+    --muted: 39 15% 94%;
+    --muted-foreground: 179 25% 35%;
 
     --accent: 39 61% 65%;
     --accent-foreground: 179 79% 13%;

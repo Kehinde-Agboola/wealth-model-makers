@@ -1,6 +1,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Target, Users, BookOpen, Globe, Award, TrendingUp } from "lucide-react";
+import aboutHeroImage from "@/assets/about-hero.jpg";
+import objectivesBgImage from "@/assets/objectives-bg.jpg";
 
 const About = () => {
   const objectives = [
@@ -58,21 +60,32 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen py-16">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Hero Section */}
-        <div className="text-center mb-16">
-          <Badge variant="outline" className="mb-4">Gates Foundation Funded</Badge>
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            About <span className="bg-gradient-primary bg-clip-text text-transparent">WEALTH</span>
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-            An innovative training initiative building capacity in mathematical modelling 
-            to address depression and related mental health conditions among adolescent 
-            girls and young women in Sub-Saharan Africa.
-          </p>
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section 
+        className="py-24 relative overflow-hidden"
+        style={{
+          backgroundImage: `linear-gradient(rgba(7, 59, 58, 0.9), rgba(7, 59, 58, 0.85)), url(${aboutHeroImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <Badge variant="outline" className="mb-4 bg-white/10 text-white border-white/20">Gates Foundation Funded</Badge>
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              About <span className="bg-gradient-accent bg-clip-text text-transparent">WEALTH</span>
+            </h1>
+            <p className="text-xl text-white/90 max-w-4xl mx-auto leading-relaxed">
+              An innovative training initiative building capacity in mathematical modelling 
+              to address depression and related mental health conditions among adolescent 
+              girls and young women in Sub-Saharan Africa.
+            </p>
+          </div>
         </div>
+      </section>
 
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Full Programme Name */}
         <Card className="mb-12 bg-gradient-primary text-white">
           <CardHeader className="text-center">
@@ -86,32 +99,41 @@ const About = () => {
         </Card>
 
         {/* Programme Objectives */}
-        <section className="mb-16">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Programme Objectives
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              WEALTH aims to equip early and mid-career researchers and policymakers with advanced skills
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {objectives.map((objective, index) => (
-              <Card key={index} className="text-center shadow-elegant hover:shadow-hero transition-all duration-300">
-                <CardHeader>
-                  <div className="mx-auto w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center text-white mb-4">
-                    {objective.icon}
-                  </div>
-                  <CardTitle className="text-lg">{objective.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base">
-                    {objective.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
-            ))}
+        <section 
+          className="mb-16 py-16 rounded-2xl relative overflow-hidden"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.92)), url(${objectivesBgImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
+          <div className="relative z-10">
+            <div className="text-center mb-10">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                Programme Objectives
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                WEALTH aims to equip early and mid-career researchers and policymakers with advanced skills
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {objectives.map((objective, index) => (
+                <Card key={index} className="text-center shadow-elegant hover:shadow-hero transition-all duration-300 bg-white/80 backdrop-blur-sm">
+                  <CardHeader>
+                    <div className="mx-auto w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center text-white mb-4">
+                      {objective.icon}
+                    </div>
+                    <CardTitle className="text-lg">{objective.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-base">
+                      {objective.description}
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         </section>
 

@@ -2,6 +2,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, BookOpen, Award, GraduationCap } from "lucide-react";
+import facultyHeroImage from "@/assets/faculty-hero.jpg";
+import facultyPlaceholder1 from "@/assets/faculty-placeholder-1.jpg";
+import facultyPlaceholder2 from "@/assets/faculty-placeholder-2.jpg";
+import facultyPlaceholder3 from "@/assets/faculty-placeholder-3.jpg";
 
 const Faculty = () => {
   const faculty = [
@@ -13,6 +17,7 @@ const Faculty = () => {
       specialization: "Child & Youth Psychiatry, Women's Mental Health",
       description: "Leading expert in child and adolescent psychiatry with extensive experience in mental health research and policy development across Sub-Saharan Africa.",
       profileUrl: "https://www.com.ui.edu.ng/index.php/prof-olayinka-o-omigbodun",
+      image: facultyPlaceholder1,
       achievements: [
         "Founding Director, Centre for Child and Adolescent Mental Health",
         "Fellow of the Academy of Science (FAS)",
@@ -28,6 +33,7 @@ const Faculty = () => {
       specialization: "Statistical Analysis & Mathematical Modelling",
       description: "Renowned biostatistician with expertise in advanced statistical methods and mathematical modelling for health research and policy applications.",
       profileUrl: "https://com.ui.edu.ng/index.php/prof-oyindamola-b-yusuf",
+      image: facultyPlaceholder2,
       achievements: [
         "Professor of Biostatistics",
         "Expert in Statistical Analysis",
@@ -43,6 +49,7 @@ const Faculty = () => {
       specialization: "Clinical Epidemiology, Spatial Modelling, Health Economics",
       description: "Specialist in clinical epidemiology with particular expertise in spatial modelling and health economics applications in Sub-Saharan Africa.",
       profileUrl: "https://cartafrica.org/fellows-and-graduate/eniola-bamgboye/",
+      image: facultyPlaceholder3,
       achievements: [
         "Clinical Epidemiology Expert",
         "Spatial Modelling Specialist", 
@@ -96,69 +103,93 @@ const Faculty = () => {
   ];
 
   return (
-    <div className="min-h-screen py-16">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Hero Section */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Meet Our <span className="bg-gradient-primary bg-clip-text text-transparent">Expert Team</span>
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Our distinguished faculty brings together expertise in psychiatry, biostatistics, 
-            epidemiology, and policy to lead the WEALTH programme.
-          </p>
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section 
+        className="py-24 relative overflow-hidden"
+        style={{
+          backgroundImage: `linear-gradient(rgba(7, 59, 58, 0.9), rgba(7, 59, 58, 0.85)), url(${facultyHeroImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Meet Our <span className="bg-gradient-accent bg-clip-text text-transparent">Expert Team</span>
+            </h1>
+            <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+              Our distinguished faculty brings together expertise in psychiatry, biostatistics, 
+              epidemiology, and policy to lead the WEALTH programme.
+            </p>
+          </div>
         </div>
+      </section>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
 
         {/* Faculty Profiles */}
         <section className="mb-16">
           <div className="space-y-12">
             {faculty.map((member, index) => (
-              <Card key={index} className="shadow-elegant hover:shadow-hero transition-all duration-300">
-                <CardHeader>
-                  <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
-                    <div className="flex-1">
-                      <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-                        <CardTitle className="text-2xl text-foreground">
-                          {member.name}
-                        </CardTitle>
-                        <Badge variant="secondary" className="w-fit">
-                          {member.credentials}
-                        </Badge>
-                      </div>
-                      <div className="space-y-2 mb-4">
-                        <Badge variant="outline" className="bg-gradient-primary text-white border-0">
-                          {member.title}
-                        </Badge>
-                        <p className="text-lg font-medium text-primary">{member.position}</p>
-                        <p className="text-muted-foreground font-medium">
-                          <span className="text-foreground">Specialization:</span> {member.specialization}
-                        </p>
-                      </div>
-                    </div>
-                    <Button variant="outline" asChild>
-                      <a href={member.profileUrl} target="_blank" rel="noopener noreferrer">
-                        View Profile <ExternalLink className="ml-2 h-4 w-4" />
-                      </a>
-                    </Button>
+              <Card key={index} className="shadow-elegant hover:shadow-hero transition-all duration-300 overflow-hidden">
+                <div className="md:flex">
+                  <div className="md:w-1/3 relative">
+                    <img 
+                      src={member.image} 
+                      alt={member.name}
+                      className="w-full h-64 md:h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base leading-relaxed mb-6">
-                    {member.description}
-                  </CardDescription>
-                  
-                  <div>
-                    <h4 className="font-semibold text-foreground mb-3">Key Achievements:</h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {member.achievements.map((achievement, idx) => (
-                        <div key={idx} className="flex items-center space-x-3">
-                          <Award className="h-4 w-4 text-primary flex-shrink-0" />
-                          <span className="text-sm text-muted-foreground">{achievement}</span>
+                  <div className="md:w-2/3">
+                    <CardHeader>
+                      <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
+                        <div className="flex-1">
+                          <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
+                            <CardTitle className="text-2xl text-foreground">
+                              {member.name}
+                            </CardTitle>
+                            <Badge variant="secondary" className="w-fit">
+                              {member.credentials}
+                            </Badge>
+                          </div>
+                          <div className="space-y-2 mb-4">
+                            <Badge variant="outline" className="bg-gradient-primary text-white border-0">
+                              {member.title}
+                            </Badge>
+                            <p className="text-lg font-medium text-primary">{member.position}</p>
+                            <p className="text-muted-foreground font-medium">
+                              <span className="text-foreground">Specialization:</span> {member.specialization}
+                            </p>
+                          </div>
                         </div>
-                      ))}
-                    </div>
+                        <Button variant="outline" asChild>
+                          <a href={member.profileUrl} target="_blank" rel="noopener noreferrer">
+                            View Profile <ExternalLink className="ml-2 h-4 w-4" />
+                          </a>
+                        </Button>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <CardDescription className="text-base leading-relaxed mb-6">
+                        {member.description}
+                      </CardDescription>
+                      
+                      <div>
+                        <h4 className="font-semibold text-foreground mb-3">Key Achievements:</h4>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          {member.achievements.map((achievement, idx) => (
+                            <div key={idx} className="flex items-center space-x-3">
+                              <Award className="h-4 w-4 text-primary flex-shrink-0" />
+                              <span className="text-sm text-muted-foreground">{achievement}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </CardContent>
                   </div>
-                </CardContent>
+                </div>
               </Card>
             ))}
           </div>

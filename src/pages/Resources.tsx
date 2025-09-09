@@ -1,6 +1,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { FileText, Download, BookOpen, Users, Globe, Calendar } from "lucide-react";
+import resourcesHeroImage from "@/assets/resources-hero.jpg";
+import trainingMaterialsImage from "@/assets/training-materials.jpg";
 
 const Resources = () => {
   const resourceCategories = [
@@ -56,63 +58,84 @@ const Resources = () => {
   ];
 
   return (
-    <div className="min-h-screen py-16">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Hero Section */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Resources & <span className="bg-gradient-primary bg-clip-text text-transparent">Publications</span>
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Access comprehensive resources, research publications, and tools developed 
-            through the WEALTH programme to support mental health research and policy development.
-          </p>
-        </div>
-
-        {/* Resource Categories */}
-        <section className="mb-16">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Resource Categories
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Comprehensive materials to support research, policy, and practice
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section 
+        className="py-24 relative overflow-hidden"
+        style={{
+          backgroundImage: `linear-gradient(rgba(7, 59, 58, 0.9), rgba(7, 59, 58, 0.85)), url(${resourcesHeroImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Resources & <span className="bg-gradient-accent bg-clip-text text-transparent">Publications</span>
+            </h1>
+            <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+              Access comprehensive resources, research publications, and tools developed 
+              through the WEALTH programme to support mental health research and policy development.
             </p>
           </div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {resourceCategories.map((category, index) => (
-              <Card key={index} className="shadow-elegant hover:shadow-hero transition-all duration-300">
-                <CardHeader>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center text-white flex-shrink-0">
-                      {category.icon}
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between mb-2">
-                        <CardTitle className="text-xl">{category.title}</CardTitle>
-                        <span className="text-xs px-2 py-1 bg-muted rounded-full text-muted-foreground">
-                          {category.status}
-                        </span>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+
+        {/* Resource Categories */}
+        <section 
+          className="mb-16 py-16 rounded-2xl relative overflow-hidden"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.92)), url(${trainingMaterialsImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
+          <div className="relative z-10">
+            <div className="text-center mb-10">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                Resource Categories
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Comprehensive materials to support research, policy, and practice
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {resourceCategories.map((category, index) => (
+                <Card key={index} className="shadow-elegant hover:shadow-hero transition-all duration-300 bg-white/90 backdrop-blur-sm">
+                  <CardHeader>
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center text-white flex-shrink-0">
+                        {category.icon}
                       </div>
-                      <CardDescription className="text-base mb-4">
-                        {category.description}
-                      </CardDescription>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2">
-                    {category.items.map((item, idx) => (
-                      <div key={idx} className="flex items-center space-x-3">
-                        <Download className="h-4 w-4 text-primary flex-shrink-0" />
-                        <span className="text-sm text-muted-foreground">{item}</span>
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between mb-2">
+                          <CardTitle className="text-xl">{category.title}</CardTitle>
+                          <span className="text-xs px-2 py-1 bg-muted rounded-full text-muted-foreground">
+                            {category.status}
+                          </span>
+                        </div>
+                        <CardDescription className="text-base mb-4">
+                          {category.description}
+                        </CardDescription>
                       </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-2">
+                      {category.items.map((item, idx) => (
+                        <div key={idx} className="flex items-center space-x-3">
+                          <Download className="h-4 w-4 text-primary flex-shrink-0" />
+                          <span className="text-sm text-muted-foreground">{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         </section>
 

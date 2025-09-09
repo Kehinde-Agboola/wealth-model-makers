@@ -2,6 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, ArrowRight, Bell, Users, Award, BookOpen } from "lucide-react";
+import newsHeroImage from "@/assets/news-hero.jpg";
 
 const News = () => {
   const newsItems = [
@@ -63,18 +64,30 @@ const News = () => {
   };
 
   return (
-    <div className="min-h-screen py-16">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Hero Section */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Latest <span className="bg-gradient-primary bg-clip-text text-transparent">News & Updates</span>
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Stay informed about the latest developments, announcements, and milestones 
-            from the WEALTH programme.
-          </p>
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section 
+        className="py-24 relative overflow-hidden"
+        style={{
+          backgroundImage: `linear-gradient(rgba(7, 59, 58, 0.9), rgba(7, 59, 58, 0.85)), url(${newsHeroImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Latest <span className="bg-gradient-accent bg-clip-text text-transparent">News & Updates</span>
+            </h1>
+            <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+              Stay informed about the latest developments, announcements, and milestones 
+              from the WEALTH programme.
+            </p>
+          </div>
         </div>
+      </section>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
 
         {/* Newsletter Signup */}
         <section className="mb-16">

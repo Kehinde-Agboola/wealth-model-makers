@@ -9,9 +9,9 @@ const Header = () => {
   const location = useLocation();
 
   const navigation = [
-    { name: "Dashboard", href: "/" },
-    { name: "Courses", href: "/courses" },
-    { name: "Calendar", href: "/calendar" },
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Faculty", href: "/faculty" },
     { name: "Resources", href: "/resources" },
     { name: "News", href: "/news" },
   ];

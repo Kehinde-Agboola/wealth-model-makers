@@ -10,6 +10,9 @@ import About from "./pages/About";
 import Faculty from "./pages/Faculty";
 import Resources from "./pages/Resources";
 import News from "./pages/News";
+import LmsDashboard from "./pages/LmsDashboard";
+import LmsCourse from "./pages/LmsCourse";
+import LmsCalendar from "./pages/LmsCalendar";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +32,9 @@ const App = () => (
               <Route path="/faculty" element={<Faculty />} />
               <Route path="/resources" element={<Resources />} />
               <Route path="/news" element={<News />} />
+              <Route path="/lms" element={<LmsDashboard />} />
+              <Route path="/lms/course/:courseId" element={<LmsCourse />} />
+              <Route path="/lms/calendar" element={<LmsCalendar />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

@@ -104,56 +104,59 @@ const Faculty = () => {
   ];
 
   return (
-    <motion.div 
+    <motion.div
       className="min-h-screen"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
       {/* Hero Section */}
-      <motion.section 
-        className="py-24 relative overflow-hidden"
+      <motion.section
+        className="py-24 relative overflow-hidden min-h-[90vh]"
         style={{
           backgroundImage: `linear-gradient(rgba(7, 59, 58, 0.9), rgba(7, 59, 58, 0.85)), url(${facultyHeroImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
-            <motion.h1 
+            <motion.h1
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.4, duration: 0.6 }}
             >
-              Meet Our <span className="bg-gradient-accent bg-clip-text text-transparent">Expert Team</span>
+              Meet Our{" "}
+              <span className="bg-gradient-accent bg-clip-text text-transparent">
+                Expert Team
+              </span>
             </motion.h1>
-            <motion.p 
+            <motion.p
               className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.6 }}
             >
-              Our distinguished faculty brings together expertise in psychiatry, biostatistics, 
-              epidemiology, and policy to lead the WEALTH programme.
+              Our distinguished faculty brings together expertise in psychiatry,
+              biostatistics, epidemiology, and policy to lead the WEALTH
+              programme.
             </motion.p>
           </motion.div>
         </div>
       </motion.section>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-
         {/* Faculty Profiles */}
-        <motion.section 
+        <motion.section
           className="mb-16"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -173,8 +176,8 @@ const Faculty = () => {
                 <Card className="shadow-elegant hover:shadow-hero transition-all duration-300 overflow-hidden">
                   <div className="md:flex">
                     <div className="md:w-1/3 relative overflow-hidden">
-                      <img 
-                        src={member.image} 
+                      <img
+                        src={member.image}
                         alt={member.name}
                         className="w-full h-64 md:h-full object-cover transition-transform duration-300 hover:scale-110"
                       />
@@ -193,18 +196,35 @@ const Faculty = () => {
                               </Badge>
                             </div>
                             <div className="space-y-2 mb-4">
-                              <Badge variant="outline" className="bg-gradient-primary text-white border-0">
+                              <Badge
+                                variant="outline"
+                                className="bg-gradient-primary text-white border-0"
+                              >
                                 {member.title}
                               </Badge>
-                              <p className="text-base lg:text-lg font-medium text-primary">{member.position}</p>
+                              <p className="text-base lg:text-lg font-medium text-primary">
+                                {member.position}
+                              </p>
                               <p className="text-sm lg:text-base text-muted-foreground font-medium">
-                                <span className="text-foreground">Specialization:</span> {member.specialization}
+                                <span className="text-foreground">
+                                  Specialization:
+                                </span>{" "}
+                                {member.specialization}
                               </p>
                             </div>
                           </div>
-                          <Button variant="outline" asChild className="w-full sm:w-auto">
-                            <a href={member.profileUrl} target="_blank" rel="noopener noreferrer">
-                              View Profile <ExternalLink className="ml-2 h-4 w-4" />
+                          <Button
+                            variant="outline"
+                            asChild
+                            className="w-full sm:w-auto"
+                          >
+                            <a
+                              href={member.profileUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              View Profile{" "}
+                              <ExternalLink className="ml-2 h-4 w-4" />
                             </a>
                           </Button>
                         </div>
@@ -213,21 +233,28 @@ const Faculty = () => {
                         <CardDescription className="text-base leading-relaxed mb-6">
                           {member.description}
                         </CardDescription>
-                        
+
                         <div>
-                          <h4 className="font-semibold text-foreground mb-3">Key Achievements:</h4>
+                          <h4 className="font-semibold text-foreground mb-3">
+                            Key Achievements:
+                          </h4>
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             {member.achievements.map((achievement, idx) => (
-                              <motion.div 
-                                key={idx} 
+                              <motion.div
+                                key={idx}
                                 className="flex items-center space-x-3"
                                 initial={{ opacity: 0, x: -10 }}
                                 whileInView={{ opacity: 1, x: 0 }}
-                                transition={{ delay: 0.3 + 0.1 * idx, duration: 0.4 }}
+                                transition={{
+                                  delay: 0.3 + 0.1 * idx,
+                                  duration: 0.4,
+                                }}
                                 viewport={{ once: true }}
                               >
                                 <Award className="h-4 w-4 text-primary flex-shrink-0" />
-                                <span className="text-sm text-muted-foreground">{achievement}</span>
+                                <span className="text-sm text-muted-foreground">
+                                  {achievement}
+                                </span>
                               </motion.div>
                             ))}
                           </div>
@@ -248,7 +275,7 @@ const Faculty = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <motion.div 
+          <motion.div
             className="text-center mb-10"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -259,7 +286,8 @@ const Faculty = () => {
               Areas of Teaching & Expertise
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Comprehensive coverage of essential skills for mathematical modelling in mental health research
+              Comprehensive coverage of essential skills for mathematical
+              modelling in mental health research
             </p>
           </motion.div>
 
@@ -275,7 +303,7 @@ const Faculty = () => {
               >
                 <Card className="text-center shadow-elegant hover:shadow-hero transition-all duration-300 h-full">
                   <CardHeader className="pb-4">
-                    <motion.div 
+                    <motion.div
                       className="mx-auto w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center text-white mb-3"
                       whileHover={{ rotate: 360, scale: 1.1 }}
                       transition={{ duration: 0.5 }}

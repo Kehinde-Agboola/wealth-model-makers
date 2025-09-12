@@ -67,29 +67,31 @@ const News = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section 
-        className="py-24 relative overflow-hidden"
+      <section
+        className="py-24 relative overflow-hidden  min-h-[90vh]"
         style={{
           backgroundImage: `linear-gradient(rgba(7, 59, 58, 0.9), rgba(7, 59, 58, 0.85)), url(${newsHeroImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Latest <span className="bg-gradient-accent bg-clip-text text-transparent">News & Updates</span>
+              Latest{" "}
+              <span className="bg-gradient-accent bg-clip-text text-transparent">
+                News & Updates
+              </span>
             </h1>
             <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
-              Stay informed about the latest developments, announcements, and milestones 
-              from the WEALTH programme.
+              Stay informed about the latest developments, announcements, and
+              milestones from the WEALTH programme.
             </p>
           </div>
         </div>
       </section>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-
         {/* Newsletter Signup */}
         <section className="mb-16">
           <Card className="bg-muted/30 border-0">
@@ -99,8 +101,9 @@ const News = () => {
               </div>
               <CardTitle className="text-2xl mb-4">Stay Connected</CardTitle>
               <CardDescription className="text-base mb-6 max-w-2xl mx-auto">
-                Subscribe to our newsletter to receive the latest updates, research findings, 
-                and programme announcements directly in your inbox.
+                Subscribe to our newsletter to receive the latest updates,
+                research findings, and programme announcements directly in your
+                inbox.
               </CardDescription>
               <Button variant="cta" size="lg" asChild>
                 <a href="mailto:wealth4womeninafrica@gmail.com?subject=Newsletter Subscription">
@@ -124,7 +127,10 @@ const News = () => {
 
           <div className="space-y-8">
             {newsItems.map((item, index) => (
-              <Card key={index} className="shadow-elegant hover:shadow-hero transition-all duration-300">
+              <Card
+                key={index}
+                className="shadow-elegant hover:shadow-hero transition-all duration-300"
+              >
                 <CardHeader>
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
                     <div className="flex-1">
@@ -138,7 +144,9 @@ const News = () => {
                           {item.date}
                         </div>
                       </div>
-                      <CardTitle className="text-xl mb-3">{item.title}</CardTitle>
+                      <CardTitle className="text-xl mb-3">
+                        {item.title}
+                      </CardTitle>
                     </div>
                   </div>
                 </CardHeader>
@@ -165,12 +173,17 @@ const News = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {upcomingEvents.map((event, index) => (
-              <Card key={index} className="text-center shadow-elegant hover:shadow-hero transition-all duration-300 hover:-translate-y-1">
+              <Card
+                key={index}
+                className="text-center shadow-elegant hover:shadow-hero transition-all duration-300 hover:-translate-y-1"
+              >
                 <CardHeader>
                   <div className="mx-auto w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center text-white mb-4">
                     <Calendar className="h-6 w-6" />
                   </div>
-                  <Badge variant="outline" className="mb-3">{event.date}</Badge>
+                  <Badge variant="outline" className="mb-3">
+                    {event.date}
+                  </Badge>
                   <CardTitle className="text-lg">{event.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -191,8 +204,8 @@ const News = () => {
                 Want to Know More?
               </CardTitle>
               <CardDescription className="text-white/90 text-lg mb-6">
-                Have questions about the programme or want to receive specific updates? 
-                Get in touch with our team.
+                Have questions about the programme or want to receive specific
+                updates? Get in touch with our team.
               </CardDescription>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button variant="cta" size="lg" asChild>
@@ -201,9 +214,7 @@ const News = () => {
                   </a>
                 </Button>
                 <Button variant="hero" size="lg" asChild>
-                  <a href="tel:+2348130817815">
-                    Call Us
-                  </a>
+                  <a href="tel:+2348130817815">Call Us</a>
                 </Button>
               </div>
             </CardHeader>

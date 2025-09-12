@@ -61,26 +61,26 @@ const About = () => {
   ];
 
   return (
-    <motion.div 
+    <motion.div
       className="min-h-screen"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
       {/* Hero Section */}
-      <motion.section 
-        className="py-24 relative overflow-hidden"
+      <motion.section
+        className="py-24 relative overflow-hidden  min-h-[90vh]"
         style={{
           backgroundImage: `linear-gradient(rgba(7, 59, 58, 0.9), rgba(7, 59, 58, 0.85)), url(${aboutHeroImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -91,25 +91,34 @@ const About = () => {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.5 }}
             >
-              <Badge variant="outline" className="mb-4 bg-white/10 text-white border-white/20">Gates Foundation Funded</Badge>
+              <Badge
+                variant="outline"
+                className="mb-4 bg-white/10 text-white border-white/20"
+              >
+                Gates Foundation Funded
+              </Badge>
             </motion.div>
-            <motion.h1 
+            <motion.h1
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.6 }}
             >
-              About <span className="bg-gradient-accent bg-clip-text text-transparent">WEALTH</span>
+              About{" "}
+              <span className="bg-gradient-accent bg-clip-text text-transparent">
+                WEALTH
+              </span>
             </motion.h1>
-            <motion.p 
+            <motion.p
               className="text-xl text-white/90 max-w-4xl mx-auto leading-relaxed"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.6 }}
             >
-              An innovative training initiative building capacity in mathematical modelling 
-              to address depression and related mental health conditions among adolescent 
-              girls and young women in Sub-Saharan Africa.
+              An innovative training initiative building capacity in
+              mathematical modelling to address depression and related mental
+              health conditions among adolescent girls and young women in
+              Sub-Saharan Africa.
             </motion.p>
           </motion.div>
         </div>
@@ -125,22 +134,24 @@ const About = () => {
           <Card className="mb-12 bg-gradient-primary text-white">
             <CardHeader className="text-center">
               <CardTitle className="text-2xlmd:text-3xl lg:text-4xl mb-4">
-                Utilizing Mathematical Modelling to Tackle Depression and Related Mental Health Conditions
+                Utilizing Mathematical Modelling to Tackle Depression and
+                Related Mental Health Conditions
               </CardTitle>
               <CardDescription className="text-white/90 text-lg">
-                Among Adolescent Girls and Young Women (AGYW) in Sub-Saharan Africa Project
+                Among Adolescent Girls and Young Women (AGYW) in Sub-Saharan
+                Africa Project
               </CardDescription>
             </CardHeader>
           </Card>
         </motion.div>
 
         {/* Programme Objectives */}
-        <motion.section 
+        <motion.section
           className="mb-16 py-16 rounded-2xl relative overflow-hidden"
           style={{
             backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.92)), url(${objectivesBgImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            backgroundSize: "cover",
+            backgroundPosition: "center",
           }}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -148,7 +159,7 @@ const About = () => {
           viewport={{ once: true }}
         >
           <div className="relative z-10">
-            <motion.div 
+            <motion.div
               className="text-center mb-10"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -159,10 +170,11 @@ const About = () => {
                 Programme Objectives
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                WEALTH aims to equip early and mid-career researchers and policymakers with advanced skills
+                WEALTH aims to equip early and mid-career researchers and
+                policymakers with advanced skills
               </p>
             </motion.div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
               {objectives.map((objective, index) => (
                 <motion.div
@@ -175,14 +187,16 @@ const About = () => {
                 >
                   <Card className="text-center shadow-elegant hover:shadow-hero transition-all duration-300 bg-white/80 backdrop-blur-sm h-full">
                     <CardHeader>
-                      <motion.div 
+                      <motion.div
                         className="mx-auto w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center text-white mb-4"
                         whileHover={{ rotate: 360, scale: 1.1 }}
                         transition={{ duration: 0.5 }}
                       >
                         {objective.icon}
                       </motion.div>
-                      <CardTitle className="text-lg">{objective.title}</CardTitle>
+                      <CardTitle className="text-lg">
+                        {objective.title}
+                      </CardTitle>
                     </CardHeader>
                     <CardContent>
                       <CardDescription className="text-base">
@@ -197,14 +211,14 @@ const About = () => {
         </motion.section>
 
         {/* Programme Activities */}
-        <motion.section 
+        <motion.section
           className="mb-16"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <motion.div 
+          <motion.div
             className="text-center mb-10"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -215,7 +229,8 @@ const About = () => {
               Programme Activities
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Comprehensive activities designed to build expertise and foster collaboration
+              Comprehensive activities designed to build expertise and foster
+              collaboration
             </p>
           </motion.div>
 
@@ -232,7 +247,7 @@ const About = () => {
                 <Card className="shadow-elegant hover:shadow-hero transition-all duration-300">
                   <CardHeader>
                     <div className="flex flex-col lg:flex-row lg:items-start space-y-4 lg:space-y-0 lg:space-x-4">
-                      <motion.div 
+                      <motion.div
                         className="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center text-white flex-shrink-0 mx-auto lg:mx-0"
                         whileHover={{ rotate: 360, scale: 1.1 }}
                         transition={{ duration: 0.5 }}
@@ -240,7 +255,9 @@ const About = () => {
                         {activity.icon}
                       </motion.div>
                       <div className="flex-1 text-center lg:text-left">
-                        <CardTitle className="text-xl mb-2">{activity.title}</CardTitle>
+                        <CardTitle className="text-xl mb-2">
+                          {activity.title}
+                        </CardTitle>
                         <CardDescription className="text-base mb-4">
                           {activity.description}
                         </CardDescription>
@@ -250,8 +267,8 @@ const About = () => {
                   <CardContent>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {activity.details.map((detail, idx) => (
-                        <motion.div 
-                          key={idx} 
+                        <motion.div
+                          key={idx}
                           className="flex items-center space-x-3"
                           initial={{ opacity: 0, x: -10 }}
                           whileInView={{ opacity: 1, x: 0 }}
@@ -259,7 +276,9 @@ const About = () => {
                           viewport={{ once: true }}
                         >
                           <Award className="h-4 w-4 text-primary flex-shrink-0" />
-                          <span className="text-sm text-muted-foreground">{detail}</span>
+                          <span className="text-sm text-muted-foreground">
+                            {detail}
+                          </span>
                         </motion.div>
                       ))}
                     </div>
@@ -271,7 +290,7 @@ const About = () => {
         </motion.section>
 
         {/* Funding Information */}
-        <motion.section 
+        <motion.section
           className="text-center"
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -280,12 +299,16 @@ const About = () => {
         >
           <Card className="bg-muted/50 border-0">
             <CardHeader>
-              <CardTitle className="text-2xl md:text-3xl mb-4">Funded by the Gates Foundation</CardTitle>
+              <CardTitle className="text-2xl md:text-3xl mb-4">
+                Funded by the Gates Foundation
+              </CardTitle>
               <CardDescription className="text-base max-w-3xl mx-auto leading-relaxed">
-                The WEALTH project is proudly supported by the Gates Foundation, enabling us to build 
-                critical capacity in mathematical modelling for mental health research across Sub-Saharan Africa. 
-                This partnership reflects our shared commitment to evidence-based solutions that can transform 
-                the lives of adolescent girls and young women.
+                The WEALTH project is proudly supported by the Gates Foundation,
+                enabling us to build critical capacity in mathematical modelling
+                for mental health research across Sub-Saharan Africa. This
+                partnership reflects our shared commitment to evidence-based
+                solutions that can transform the lives of adolescent girls and
+                young women.
               </CardDescription>
             </CardHeader>
           </Card>

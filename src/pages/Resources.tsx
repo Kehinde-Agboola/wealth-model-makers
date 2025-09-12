@@ -1,6 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { FileText, Download, BookOpen, Users, Globe, Calendar } from "lucide-react";
+import { motion } from "framer-motion";
 import resourcesHeroImage from "@/assets/resources-hero.jpg";
 import trainingMaterialsImage from "@/assets/training-materials.jpg";
 

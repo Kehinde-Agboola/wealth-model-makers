@@ -2,6 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, ArrowRight, Bell, Users, Award, BookOpen } from "lucide-react";
+import { motion } from "framer-motion";
 import newsHeroImage from "@/assets/news-hero.jpg";
 
 const News = () => {

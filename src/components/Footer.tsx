@@ -19,10 +19,10 @@ const Footer = () => {
             <div className="flex items-center space-x-3">
               <img src={Logo} alt="mental-health logo" className="w-20 rounded-full" />
             </div>
-            <p className="text-white/80 text-sm leading-relaxed">
+            {/* <p className="text-white/80 text-sm leading-relaxed">
               Building capacity in mathematical modelling to address depression and related 
               conditions affecting adolescent girls and young women in Sub-Saharan Africa.
-            </p>
+            </p> */}
           </div>
 
           {/* Quick Links */}

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone } from "lucide-react";
-
+import Logo from "../assets/logo.jpg"
 const Footer = () => {
   const quickLinks = [
     { name: "Home", href: "/" },
@@ -17,13 +17,7 @@ const Footer = () => {
           {/* Logo and Description */}
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-accent rounded-lg flex items-center justify-center">
-                <span className="text-hero-bg font-bold text-lg">W</span>
-              </div>
-              <div>
-                <div className="font-bold text-lg">WEALTH</div>
-                <div className="text-sm text-white/80">Women Derive Mathematical Models</div>
-              </div>
+              <img src={Logo} alt="mental-health logo" className="w-20 rounded-full" />
             </div>
             <p className="text-white/80 text-sm leading-relaxed">
               Building capacity in mathematical modelling to address depression and related 

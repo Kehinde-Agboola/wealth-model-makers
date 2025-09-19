@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-
+import Logo from "../assets/logow.png"
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
@@ -21,17 +21,11 @@ const Header = () => {
 
   return (
     <header className="bg-background/95 backdrop-blur-sm border-b border-border sticky top-0 z-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-10">
+        <div className="flex justify-between items-center h-18">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">W</span>
-            </div>
-            <div>
-              <div className="font-bold text-lg text-foreground">WEALTH</div>
-              <div className="text-xs text-muted-foreground -mt-1">Women Derive Mathematical Models</div>
-            </div>
+          <Link to="/" className="space-x-3">
+            <img src={Logo} alt="metal-health logo" className="w-20" />
           </Link>
 
           {/* Desktop Navigation */}

@@ -33,8 +33,8 @@ const App = () => (
               <Route path="/resources" element={<Resources />} />
               <Route path="/news" element={<News />} />
               <Route path="/lms" element={<LmsDashboard />} />
-              <Route path="/lms/course/:courseId" element={<LmsCourse />} />
-              <Route path="/lms/calendar" element={<LmsCalendar />} />
+              {/* <Route path="/lms/course/:courseId" element={<LmsCourse />} /> */}
+              {/* <Route path="/lms/calendar" element={<LmsCalendar />} /> */}
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

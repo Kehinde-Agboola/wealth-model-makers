@@ -1,43 +1,55 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { buttonVariants } from "@/components/ui/button"; // for styling the Contact button
 import { cn } from "@/lib/utils";
-import Logo from "../assets/logow.png"
-const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import Logo from "../assets/logow.png";
+
+const nav = [
+  { name: "About Us", href: "/about" },
+  { name: "Faculty", href: "/faculty" },
+  { name: "News", href: "/news" },
+  { name: "Resources", href: "/resources" },
+  { name: "Contact", href: "/contact" },
+];
+
+export default function Header() {
+  const [open, setOpen] = useState(false);
   const location = useLocation();
 
-  const navigation = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Faculty", href: "/faculty" },
-    { name: "Resources", href: "/resources" },
-    { name: "News", href: "/news" },
-    // { name: "LMS", href: "/lms" },
-  ];
+  useEffect(() => setOpen(false), [location.pathname]);
+
+  useEffect(() => {
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [open]);
 
   const isActive = (href: string) => location.pathname === href;
 
   return (
-    <header className="bg-background/95 backdrop-blur-sm border-b border-border sticky top-0 z-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-10">
-        <div className="flex justify-between items-center h-18">
-          {/* Logo */}
-          <Link to="/" className="space-x-3">
-            <img src={Logo} alt="metal-health logo" className="w-20" />
+    <header className="sticky top-0 z-50 border-b border-border bg-white shadow-md">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-10 py-2">
+        {/* Make row relative so we can absolutely center the nav */}
+        <div className="relative flex h-16 items-center">
+          {/* Left: Logo */}
+          <Link to="/" className="inline-flex items-center">
+            <img src={Logo} alt="WEALTH logo" className="h-14 w-auto md:h-20" />
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
-            {navigation.map((item) => (
+          {/* Center: Nav (desktop) */}
+          <nav className="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
+            {nav.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
                 className={cn(
                   "text-sm font-medium transition-colors hover:text-primary",
                   isActive(item.href)
-                    ? "text-primary border-b-2 border-primary pb-1"
+                    ? "text-primary underline underline-offset-8"
                     : "text-muted-foreground"
                 )}
               >
@@ -46,56 +58,99 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Contact Button */}
-          <div className="hidden md:flex">
-            <Button variant="outline" asChild>
-              <a href="mailto:wealth4womeninafrica@gmail.com">Contact Us</a>
-            </Button>
+          {/* Right: Contact (desktop) */}
+          <div className="ml-auto hidden md:flex">
+            <Link
+              to="/contact"
+              className={cn(buttonVariants({ variant: "default" }), "px-4")}
+            >
+              Contact
+            </Link>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label="Toggle menu"
+          {/* Mobile toggle */}
+          <div className="ml-auto md:hidden">
+            <button
+              onClick={() => setOpen(true)}
+              aria-label="Open menu"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-md hover:bg-accent"
             >
-              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </Button>
+              <Bars3Icon className="h-6 w-6" />
+            </button>
           </div>
         </div>
+      </div>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 border-t border-border">
-              {navigation.map((item) => (
+      {/* Overlay (blur + tint) */}
+      {open && (
+        <button
+          aria-label="Close menu"
+          onClick={() => setOpen(false)}
+          className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm"
+        />
+      )}
+
+      {/* Right drawer */}
+      <aside
+        className={cn(
+          "fixed right-0 top-0 z-50 h-screen w-[80%] max-w-sm border-l border-border bg-background shadow-xl transition-transform duration-300 ease-out md:hidden",
+          open ? "translate-x-0" : "translate-x-full"
+        )}
+        role="dialog"
+        aria-modal="true"
+      >
+        <div className="flex h-16 items-center justify-between px-4">
+          <Link
+            to="/"
+            className="inline-flex items-center"
+            onClick={() => setOpen(false)}
+          >
+            <img src={Logo} alt="WEALTH logo" className="h-14 w-auto" />
+          </Link>
+          <button
+            onClick={() => setOpen(false)}
+            aria-label="Close menu"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-md"
+          >
+            <XMarkIcon className="h-6 w-6" />
+          </button>
+        </div>
+
+        <nav className="px-4 py-2">
+          <ul className="space-y-1">
+            {nav.map((item) => (
+              <li key={item.name}>
                 <Link
-                  key={item.name}
                   to={item.href}
+                  onClick={() => setOpen(false)}
                   className={cn(
-                    "block px-3 py-2 rounded-md text-base font-medium transition-colors",
+                    "block rounded-md px-3 py-2 text-base font-medium transition-colors",
                     isActive(item.href)
-                      ? "text-primary bg-primary/10"
-                      : "text-muted-foreground hover:text-primary hover:bg-primary/5"
+                      ? "bg-primary/10 text-primary"
+                      : "text-muted-foreground hover:bg-primary/5 hover:text-primary"
                   )}
-                  onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
                 </Link>
-              ))}
-              <div className="px-3 py-2">
-                <Button variant="outline" size="sm" asChild className="w-full">
-                  <a href="mailto:wealth4womeninafrica@gmail.com">Contact Us</a>
-                </Button>
-              </div>
-            </div>
+              </li>
+            ))}
+          </ul>
+
+          {/* Contact action on mobile */}
+          <div className="mt-4 px-1">
+            <Link
+              to="/contact"
+              onClick={() => setOpen(false)}
+              className={cn(
+                "w-full justify-center inline-flex",
+                buttonVariants({ variant: "default" })
+              )}
+            >
+              Contact
+            </Link>
           </div>
-        )}
-      </div>
+        </nav>
+      </aside>
     </header>
   );
-};
-
-export default Header;
+}

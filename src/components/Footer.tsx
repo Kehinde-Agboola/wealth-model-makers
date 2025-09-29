@@ -103,15 +103,15 @@ export default function Footer() {
   }
 
   return (
-    <footer className="border-t bg-white">
+    <footer className="border-t bg-[#073b3a] text-white">
       <div className="max-w-6xl mx-auto py-12">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
           {/* Brand */}
           <div>
             <Link to="/" className="inline-flex items-center gap-2">
-              <img src={Logo} alt="WEALTH logo" className="h-20 w-auto" />
+              <img src={Logo} alt="WEALTH logo" className="h-20 w-auto text-white"  />
             </Link>
-            <p className="mt-3 text-sm text-muted-foreground">
+            <p className="mt-3 text-sm text-white">
               Advancing mental health solutions with data-driven models across
               Africa.
             </p>
@@ -130,7 +130,7 @@ export default function Footer() {
                   >
                     <svg
                       viewBox="0 0 24 24"
-                      className="h-5 w-5 fill-current text-muted-foreground"
+                      className="h-5 w-5 fill-current text-white"
                       aria-hidden="true"
                     >
                       <path d={s.svgPath} />
@@ -152,7 +152,7 @@ export default function Footer() {
             <h4 id="subscribe-heading" className="font-semibold">
               Subscribe
             </h4>
-            <p className="mt-2 text-sm text-muted-foreground">
+            <p className="mt-2 text-sm text-white/80">
               Get programme updates and research highlights.
             </p>
 
@@ -177,14 +177,14 @@ export default function Footer() {
                   type="email"
                   required
                   placeholder="you@example.com"
-                  className="h-11 w-full rounded-xl border px-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+                  className="h-11 w-full rounded-xl border px-4 text-sm text-green-700 focus:outline-none focus:ring-2 focus:ring-primary/30"
                   aria-invalid={status === "error" ? true : undefined}
                   aria-describedby="footer-subscribe-message"
                 />
                 <button
                   type="submit"
                   disabled={loading}
-                  className={btn("", { size: "default" })}
+                  className={btn("text-white", { size: "default" })}
                 >
                   {loading ? "Joining…" : "Join"}
                 </button>
@@ -207,7 +207,7 @@ export default function Footer() {
               </p>
 
               {/* Optional compliance blurb */}
-              <p className="mt-2 text-[11px] text-muted-foreground/80">
+              <p className="mt-2 text-[11px] text-white/80">
                 By subscribing, you agree to receive updates from WEALTH. You
                 can unsubscribe at any time.
               </p>
@@ -215,10 +215,12 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 text-center gap-2 border-t pt-6 text-xs text-muted-foreground">
-          <span>© {year} WEALTH.</span>
-          <span className="opacity-50">•</span>
-          <span>Built for impact.</span>
+        <div className="mt-10 text-center gap-2 border-t pt-6 text-md text-white/80">
+          <span>
+            © {year} WEALTH All rights reserved Funded by the Gates Foundation.
+          </span>
+          {/* <span className="opacity-50">•</span> */}
+          {/* <span></span> */}
         </div>
       </div>
     </footer>
@@ -238,7 +240,7 @@ function NavBlock({
   return (
     <nav aria-label={title}>
       <h4 className="font-semibold">{title}</h4>
-      <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+      <ul className="mt-3 space-y-2 text-sm text-white/80">
         {links.map((l) => (
           <li key={l.to}>
             <Link to={l.to} className="hover:text-primary">

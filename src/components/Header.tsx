@@ -11,6 +11,7 @@ const nav = [
   { name: "News", href: "/news" },
   { name: "Resources", href: "/resources" },
   { name: "Contact", href: "/contact" },
+  { name: "LMS", href: "/lms" },
 ];
 
 export default function Header() {

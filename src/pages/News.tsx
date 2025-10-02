@@ -22,7 +22,6 @@ import newsHeroImage from "@/assets/news-hero.jpg";
 import { cn } from "@/lib/utils";
 
 /* ---------------- Types ---------------- */
-type NewsType = "announcement" | "team" | "funding";
 type NewsItem = {
   id: string;
   date: string;
@@ -30,7 +29,6 @@ type NewsItem = {
   category: string;
   title: string;
   excerpt: string;
-  type: NewsType;
   icon: JSX.Element;
 };
 type UpcomingEvent = {
@@ -50,7 +48,6 @@ const ALL_NEWS: NewsItem[] = [
     title: "WEALTH Programme Officially Launches",
     excerpt:
       "The Gates Foundation-funded WEALTH programme launches to address mental health challenges among AGYW in Sub-Saharan Africa using mathematical modelling.",
-    type: "announcement",
     icon: <Award className="h-5 w-5" />,
   },
   {
@@ -61,7 +58,6 @@ const ALL_NEWS: NewsItem[] = [
     title: "Expert Faculty Team Assembled",
     excerpt:
       "Distinguished faculty from CoMUI join WEALTH, bringing expertise in psychiatry, biostatistics, and epidemiology to lead the initiative.",
-    type: "team",
     icon: <Users className="h-5 w-5" />,
   },
   {
@@ -72,7 +68,6 @@ const ALL_NEWS: NewsItem[] = [
     title: "Gates Foundation Grant Awarded",
     excerpt:
       "WEALTH receives significant funding from the Gates Foundation to build capacity in mathematical modelling for mental health research.",
-    type: "funding",
     icon: <BookOpen className="h-5 w-5" />,
   },
 ];
@@ -102,53 +97,95 @@ const UPCOMING: UpcomingEvent[] = [
 ];
 
 /* ---------------- Helpers ---------------- */
-function typeClasses(t: NewsType) {
-  switch (t) {
-    case "announcement":
-      return "bg-gradient-to-r from-emerald-500 to-teal-500 text-white";
-    case "team":
-      return "bg-emerald-50 text-emerald-700 border border-emerald-200";
-    case "funding":
-      return "bg-secondary text-secondary-foreground";
-    default:
-      return "bg-muted text-muted-foreground";
-  }
-}
 
+// Animation variants
 const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 14 },
+  hidden: { opacity: 0, y: 20 },
   show: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.35,
+      duration: 0.6,
       ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+    },
+  },
+};
+
+const fadeInLeft: Variants = {
+  hidden: { opacity: 0, x: -30 },
+  show: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+    },
+  },
+};
+
+const fadeInRight: Variants = {
+  hidden: { opacity: 0, x: 30 },
+  show: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+    },
+  },
+};
+
+const scaleIn: Variants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  show: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+    },
+  },
+};
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const slideInFromBottom: Variants = {
+  hidden: { opacity: 0, y: 50 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+    },
+  },
+};
+
+const pulseIcon: Variants = {
+  hidden: { scale: 0 },
+  show: {
+    scale: 1,
+    transition: {
+      duration: 0.5,
+      ease: "backOut",
     },
   },
 };
 
 /* ---------------- Component ---------------- */
 export default function News() {
-  const [filter, setFilter] = useState<"all" | NewsType>("all");
   const [visible, setVisible] = useState(3);
 
-  const categories = useMemo(
-    () =>
-      [
-        { key: "all", label: "All" },
-        { key: "announcement", label: "Announcements" },
-        { key: "team", label: "Team" },
-        { key: "funding", label: "Funding" },
-      ] as const,
-    []
-  );
-
-  const filtered = useMemo(
-    () =>
-      filter === "all" ? ALL_NEWS : ALL_NEWS.filter((n) => n.type === filter),
-    [filter]
-  );
-  const items = filtered.slice(0, visible);
+  const items = ALL_NEWS.slice(0, visible);
 
   return (
     <div className="min-h-screen">
@@ -167,19 +204,27 @@ export default function News() {
           aria-hidden="true"
         />
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto">
+          <motion.div 
+            className="text-center max-w-3xl mx-auto"
+            variants={staggerContainer}
+            initial="hidden"
+            animate="show"
+          >
             <motion.h1
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45 }}
+              variants={fadeInUp}
               className="text-4xl md:text-5xl font-bold text-white"
             >
-              Latest <span className="text-emerald-300">News & Updates</span>
+              Latest <motion.span 
+                className="text-emerald-300"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.3, ease: "backOut" }}
+              >
+                News & Updates
+              </motion.span>
             </motion.h1>
             <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, delay: 0.05 }}
+              variants={fadeInUp}
               className="mt-4 text-lg md:text-xl text-white/90"
             >
               Stay informed about the latest developments, announcements, and
@@ -188,201 +233,389 @@ export default function News() {
 
             {/* Newsletter CTA */}
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, delay: 0.1 }}
+              variants={slideInFromBottom}
               className="mt-8"
             >
-              <div className="inline-flex items-center gap-3 rounded-full bg-white/10 border border-white/20 px-4 py-2 backdrop-blur">
-                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-500 text-white">
+              <motion.div 
+                className="inline-flex items-center gap-3 rounded-full bg-white/10 border border-white/20 px-4 py-2 backdrop-blur"
+                whileHover={{ scale: 1.02, boxShadow: "0 10px 25px rgba(0,0,0,0.2)" }}
+                transition={{ duration: 0.2 }}
+              >
+                <motion.div 
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-500 text-white"
+                  variants={pulseIcon}
+                  whileHover={{ scale: 1.1, rotate: 10 }}
+                  transition={{ duration: 0.2 }}
+                >
                   <Bell className="h-5 w-5" />
-                </div>
+                </motion.div>
                 <div className="text-left">
-                  <div className="text-white font-medium leading-tight">
+                  <motion.div 
+                    className="text-white font-medium leading-tight"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.5 }}
+                  >
                     Get updates by email
-                  </div>
-                  <div className="text-white/70 text-sm">
+                  </motion.div>
+                  <motion.div 
+                    className="text-white/70 text-sm"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.6 }}
+                  >
                     Research highlights & programme news
-                  </div>
+                  </motion.div>
                 </div>
-                <a
+                <motion.a
                   className={cn(
                     buttonVariants({ variant: "secondary", size: "sm" }),
                     "ml-2"
                   )}
                   href="mailto:wealth4womeninafrica@gmail.com?subject=Newsletter Subscription"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.2 }}
                 >
                   Subscribe
-                </a>
-              </div>
+                </motion.a>
+              </motion.div>
             </motion.div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Filter */}
-        <section aria-label="News filter" className="mb-8">
-          <div className="flex flex-wrap justify-center gap-2">
-            {categories.map((c) => (
-              <button
-                key={c.key}
-                onClick={() => {
-                  setFilter(c.key as typeof filter);
-                  setVisible(3);
-                }}
-                className={cn(
-                  "rounded-full px-4 py-2 text-sm font-medium transition",
-                  filter === c.key
-                    ? "bg-emerald-600 text-white"
-                    : "bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
-                )}
-                aria-pressed={filter === c.key}
-              >
-                {c.label}
-              </button>
-            ))}
-          </div>
-        </section>
+
 
         {/* Recent Updates — responsive flexbox portrait cards */}
-        <section className="mb-16" aria-label="Recent updates">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
+        <motion.section 
+          className="mb-16" 
+          aria-label="Recent updates"
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          <motion.div 
+            className="text-center mb-8"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <motion.h2 
+              className="text-3xl md:text-4xl font-bold text-foreground mb-1.5"
+              variants={fadeInUp}
+            >
               Recent Updates
-            </h2>
-            <p className="text-lg text-muted-foreground">
+            </motion.h2>
+            <motion.p 
+              className="text-lg text-muted-foreground"
+              variants={fadeInUp}
+            >
               Fresh news and announcements from WEALTH
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
-          <div className="flex flex-wrap justify-center gap-6">
-            {items.map((item) => (
+          <motion.div 
+            className="flex flex-wrap justify-center gap-6"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.1 }}
+          >
+            {items.map((item, index) => (
               <motion.article
                 key={item.id}
                 variants={fadeInUp}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, amount: 0.2 }}
+                whileHover={{ 
+                  scale: 1.02,
+                  y: -8,
+                  boxShadow: "0 20px 40px rgba(0,0,0,0.1)"
+                }}
                 className="w-[280px] md:w-[300px]"
+                style={{ 
+                  transition: "all 0.3s cubic-bezier(0.22, 1, 0.36, 1)"
+                }}
               >
-                <Card className="flex h-[420px] flex-col items-center text-center shadow-elegant hover:shadow-hero transition-all duration-300 hover:-translate-y-0.5">
-                  <CardHeader className="w-full items-center">
+                <Card className="flex h-[320px] flex-col items-center text-center shadow-elegant hover:shadow-hero transition-all duration-500 overflow-hidden group">
+                  <CardHeader className="w-full flex flex-col items-center gap-2 pb-2">
                     {/* Category pill + date */}
-                    <div className="flex flex-col items-center gap-2 mb-2">
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                    >
                       <Badge
-                        className={cn(
-                          "inline-flex items-center gap-1.5",
-                          typeClasses(item.type)
-                        )}
+                        className="inline-flex items-center gap-1.5 group-hover:scale-105 transition-transform bg-gradient-to-r from-emerald-500 to-teal-500 text-white"
                       >
-                        {item.icon}
+                        <motion.div
+                          whileHover={{ rotate: 360 }}
+                          transition={{ duration: 0.5 }}
+                        >
+                          {item.icon}
+                        </motion.div>
                         <span>{item.category}</span>
                       </Badge>
-                      <div className="flex items-center text-sm text-muted-foreground">
-                        <Calendar className="h-4 w-4 mr-1" />
-                        <time dateTime={item.datetime}>{item.date}</time>
-                      </div>
-                    </div>
-
-                    <CardTitle className="mt-1 text-lg leading-snug">
-                      {item.title}
-                    </CardTitle>
+                    </motion.div>
+                    <motion.div 
+                      className="flex items-center text-sm text-muted-foreground"
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 + 0.1 }}
+                      viewport={{ once: true }}
+                    >
+                      <Calendar className="h-4 w-4 mr-1" />
+                      <time dateTime={item.datetime}>{item.date}</time>
+                    </motion.div>
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 + 0.2 }}
+                      viewport={{ once: true }}
+                    >
+                      <CardTitle className="mt-1 text-lg leading-snug group-hover:text-emerald-600 transition-colors">
+                        {item.title}
+                      </CardTitle>
+                    </motion.div>
                   </CardHeader>
-                  <CardContent className="mt-auto px-6">
-                    <CardDescription className="text-sm leading-relaxed">
-                      {item.excerpt}
-                    </CardDescription>
+                  <CardContent className="px-6 pt-0">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 + 0.3 }}
+                      viewport={{ once: true }}
+                    >
+                      <CardDescription className="text-sm leading-relaxed">
+                        {item.excerpt}
+                      </CardDescription>
+                    </motion.div>
                   </CardContent>
                 </Card>
               </motion.article>
             ))}
-          </div>
+          </motion.div>
 
           {/* Load more */}
-          {visible < filtered.length && (
-            <div className="mt-8 flex justify-center">
-              <Button
-                variant="outline"
-                onClick={() => setVisible((v) => v + 3)}
-                className="hover:translate-y-[-1px] transition"
+          {visible < ALL_NEWS.length && (
+            <motion.div 
+              className="mt-8 flex justify-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                Load more
-              </Button>
-            </div>
+                <Button
+                  variant="outline"
+                  onClick={() => setVisible((v) => v + 3)}
+                  className="hover:translate-y-[-2px] transition-all duration-300 hover:shadow-lg"
+                >
+                  Load more
+                </Button>
+              </motion.div>
+            </motion.div>
           )}
-        </section>
+        </motion.section>
 
-        {/* Upcoming Events (unchanged layout) */}
-        <section className="mb-16" aria-label="Upcoming events">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
+        {/* Upcoming Events */}
+        <motion.section 
+          className="mb-16" 
+          aria-label="Upcoming events"
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          <motion.div 
+            className="text-center mb-10"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <motion.h2 
+              className="text-3xl md:text-4xl font-bold text-foreground mb-2"
+              variants={fadeInUp}
+            >
               Upcoming Events
-            </h2>
-            <p className="text-lg text-muted-foreground">
+            </motion.h2>
+            <motion.p 
+              className="text-lg text-muted-foreground"
+              variants={fadeInUp}
+            >
               Mark your calendar for these milestones
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {UPCOMING.map((event) => (
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.1 }}
+          >
+            {UPCOMING.map((event, index) => (
               <motion.div
                 key={event.id}
-                variants={fadeInUp}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, amount: 0.2 }}
+                variants={index % 2 === 0 ? fadeInLeft : fadeInRight}
+                whileHover={{ 
+                  scale: 1.03,
+                  y: -10,
+                  rotateY: 5,
+                  boxShadow: "0 25px 50px rgba(0,0,0,0.15)"
+                }}
+                className="perspective-1000"
               >
-                <Card className="text-center shadow-elegant hover:shadow-hero transition-all duration-300 hover:-translate-y-1">
-                  <CardHeader>
-                    <div className="mx-auto mb-4 grid h-12 w-12 place-items-center rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white">
+                <Card className="text-center shadow-elegant hover:shadow-hero transition-all duration-500 group overflow-hidden relative">
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-br from-emerald-50 to-teal-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    initial={false}
+                  />
+                  <CardHeader className="relative z-10">
+                    <motion.div 
+                      className="mx-auto mb-4 grid h-12 w-12 place-items-center rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white"
+                      whileHover={{ 
+                        scale: 1.2,
+                        rotate: 360,
+                        boxShadow: "0 8px 20px rgba(16, 185, 129, 0.4)"
+                      }}
+                      transition={{ duration: 0.6, ease: "backOut" }}
+                    >
                       <Calendar className="h-6 w-6" />
-                    </div>
-                    <Badge variant="outline" className="mb-3">
-                      {event.date}
-                    </Badge>
-                    <CardTitle className="text-lg">{event.title}</CardTitle>
+                    </motion.div>
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                    >
+                      <Badge 
+                        variant="outline" 
+                        className="mb-3 group-hover:border-emerald-300 group-hover:bg-emerald-50 transition-all duration-300"
+                      >
+                        {event.date}
+                      </Badge>
+                    </motion.div>
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 + 0.1 }}
+                      viewport={{ once: true }}
+                    >
+                      <CardTitle className="text-lg group-hover:text-emerald-600 transition-colors duration-300">
+                        {event.title}
+                      </CardTitle>
+                    </motion.div>
                   </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-sm">
-                      {event.description}
-                    </CardDescription>
+                  <CardContent className="relative z-10">
+                    <motion.div
+                      initial={{ opacity: 0, y: 15 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 + 0.2 }}
+                      viewport={{ once: true }}
+                    >
+                      <CardDescription className="text-sm">
+                        {event.description}
+                      </CardDescription>
+                    </motion.div>
                   </CardContent>
                 </Card>
               </motion.div>
             ))}
-          </div>
-        </section>
+          </motion.div>
+        </motion.section>
 
         {/* Contact CTA */}
-        <section className="text-center" aria-label="More information">
-          <Card className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white">
-            <CardHeader>
-              <CardTitle className="text-2xl md:text-3xl mb-3">
-                Want to Know More?
-              </CardTitle>
-              <CardDescription className="text-white/90 text-lg mb-6">
-                Have questions about the programme or want specific updates? Get
-                in touch with our team.
-              </CardDescription>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Button variant="secondary" size="lg" asChild>
-                  <a href="mailto:wealth4womeninafrica@gmail.com?subject=Programme Inquiry">
-                    Contact Us <ArrowRight className="ml-2 h-5 w-5" />
-                  </a>
-                </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  asChild
-                  className="bg-transparent text-white border-white/50 hover:bg-white/10"
+        <motion.section 
+          className="text-center" 
+          aria-label="More information"
+          variants={slideInFromBottom}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Card className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white overflow-hidden relative">
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-emerald-500 to-teal-500 opacity-0"
+                whileHover={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              />
+              <CardHeader className="relative z-10">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  viewport={{ once: true }}
                 >
-                  <a href="tel:+2348130817815">Call Us</a>
-                </Button>
-              </div>
-            </CardHeader>
-          </Card>
-        </section>
+                  <CardTitle className="text-2xl md:text-3xl mb-3">
+                    Want to Know More?
+                  </CardTitle>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <CardDescription className="text-white/90 text-lg mb-6">
+                    Have questions about the programme or want specific updates? Get
+                    in touch with our team.
+                  </CardDescription>
+                </motion.div>
+                <motion.div 
+                  className="flex flex-col sm:flex-row gap-3 justify-center"
+                  variants={staggerContainer}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true, amount: 0.3 }}
+                >
+                  <motion.div
+                    variants={scaleIn}
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Button variant="secondary" size="lg" asChild>
+                      <a href="mailto:wealth4womeninafrica@gmail.com?subject=Programme Inquiry">
+                        Contact Us 
+                        <motion.div
+                          className="ml-2"
+                          whileHover={{ x: 5 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <ArrowRight className="h-5 w-5" />
+                        </motion.div>
+                      </a>
+                    </Button>
+                  </motion.div>
+                  <motion.div
+                    variants={scaleIn}
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Button
+                      variant="outline"
+                      size="lg"
+                      asChild
+                      className="bg-transparent text-white border-white/50 hover:bg-white/10 transition-all duration-300"
+                    >
+                      <a href="tel:+2348130817815">Call Us</a>
+                    </Button>
+                  </motion.div>
+                </motion.div>
+              </CardHeader>
+            </Card>
+          </motion.div>
+        </motion.section>
       </div>
     </div>
   );

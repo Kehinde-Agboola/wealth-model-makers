@@ -234,7 +234,7 @@ const About = () => {
             </p>
           </motion.div>
 
-          <div className="space-y-8">
+          <div className="space-y-8 flex flex-col sm:flex-row sm:flex-wrap gap-3">
             {activities.map((activity, index) => (
               <motion.div
                 key={index}
@@ -246,7 +246,7 @@ const About = () => {
               >
                 <Card className="shadow-elegant hover:shadow-hero transition-all duration-300">
                   <CardHeader>
-                    <div className="flex flex-col lg:flex-row lg:items-start space-y-4 lg:space-y-0 lg:space-x-4">
+                    <div className="flex flex-col lg:flex-row lg:items-start gap-4">
                       <motion.div
                         className="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center text-white flex-shrink-0 mx-auto lg:mx-0"
                         whileHover={{ rotate: 360, scale: 1.1 }}
@@ -264,12 +264,14 @@ const About = () => {
                       </div>
                     </div>
                   </CardHeader>
+
                   <CardContent>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {/* FLEXBOX instead of grid */}
+                    <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3">
                       {activity.details.map((detail, idx) => (
                         <motion.div
                           key={idx}
-                          className="flex items-center space-x-3"
+                          className="flex items-center flex-[1_1_45%] gap-3"
                           initial={{ opacity: 0, x: -10 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           transition={{ delay: 0.3 + 0.1 * idx, duration: 0.4 }}

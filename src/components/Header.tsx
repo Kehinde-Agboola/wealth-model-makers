@@ -6,12 +6,12 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Logo from "../assets/logow.png";
 
 const nav = [
+  { name: "Home", href: "/" },
   { name: "About Us", href: "/about" },
   { name: "Faculty", href: "/faculty" },
   { name: "News", href: "/news" },
   { name: "Resources", href: "/resources" },
   { name: "Contact", href: "/contact" },
-  { name: "LMS", href: "/lms" },
 ];
 
 export default function Header() {

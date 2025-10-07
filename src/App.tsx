@@ -11,11 +11,8 @@ import Faculty from "./pages/Faculty";
 import FacultyDetail from "./pages/FacultyDetail";
 import Resources from "./pages/Resources";
 import News from "./pages/News";
-import LmsDashboard from "./pages/LmsDashboard";
-// import LmsCourse from "./pages/LmsCourse";
-// import LmsCalendar from "./pages/LmsCalendar";
 import NotFound from "./pages/NotFound";
-import Contact from "./pages/contact"; // ✅ Fix casing
+import Contact from "./pages/contact";
 
 const queryClient = new QueryClient();
 
@@ -29,20 +26,17 @@ const App = () => (
           <Header />
           <main className="flex-1">
             <Routes>
-              {/* ✅ Home route */}
+              {/* Home route */}
               <Route path="/" element={<Home />} />
-              {/* or: <Route index element={<Home />} /> if you nest under a parent "/" route */}
+              <Route path="/home" element={<Home />} />
 
               <Route path="/about" element={<About />} />
               <Route path="/faculty" element={<Faculty />} />
               <Route path="/faculty/:id" element={<FacultyDetail />} />
               <Route path="/resources" element={<Resources />} />
               <Route path="/news" element={<News />} />
-              <Route path="/lms" element={<LmsDashboard />} />
-              {/* <Route path="/lms/course/:courseId" element={<LmsCourse />} /> */}
-              {/* <Route path="/lms/calendar" element={<LmsCalendar />} /> */}
 
-              {/* ✅ Add specific routes BEFORE the catch-all */}
+              {/* Contact route */}
               <Route path="/contact" element={<Contact />} />
 
               {/* ✅ Catch-all LAST */}

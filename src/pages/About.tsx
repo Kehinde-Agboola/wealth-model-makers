@@ -2,7 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Target, Users, BookOpen, Globe, Award, TrendingUp } from "lucide-react";
 import { motion } from "framer-motion";
-import aboutHeroImage from "@/assets/about-hero.jpg";
+import aboutHeroImage from "@/assets/about.jpg";
 import objectivesBgImage from "@/assets/objectives-bg.jpg";
 
 const About = () => {
@@ -69,9 +69,9 @@ const About = () => {
     >
       {/* Hero Section */}
       <motion.section
-        className="py-24 relative overflow-hidden  min-h-[90vh]"
+        className="pt-[15rem] relative overflow-hidden  min-h-[90vh]"
         style={{
-          backgroundImage: `linear-gradient(rgba(7, 59, 58, 0.9), rgba(7, 59, 58, 0.85)), url(${aboutHeroImage})`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)), url(${aboutHeroImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -91,23 +91,16 @@ const About = () => {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.5 }}
             >
-              <Badge
-                variant="outline"
-                className="mb-4 bg-white/10 text-white border-white/20"
-              >
-                Gates Foundation Funded
-              </Badge>
+           
             </motion.div>
             <motion.h1
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white "
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.6 }}
             >
-              About{" "}
-              <span className="bg-gradient-accent bg-clip-text text-transparent">
-                WEALTH
-              </span>
+              About WEALTH
+            
             </motion.h1>
             <motion.p
               className="text-xl text-white/90 max-w-4xl mx-auto leading-relaxed"

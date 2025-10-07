@@ -1,64 +1,19 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, BookOpen, Award, GraduationCap } from "lucide-react";
+import { ExternalLink, BookOpen, Award, GraduationCap, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
-import facultyHeroImage from "@/assets/faculty-hero.jpg";
-import facultyPlaceholder1 from "@/assets/faculty-placeholder-1.jpg";
-import facultyPlaceholder2 from "@/assets/faculty-placeholder-2.jpg";
-import facultyPlaceholder3 from "@/assets/faculty-placeholder-3.jpg";
+import { useNavigate } from "react-router-dom";
+// import facultyHeroImage from "@/assets/faculty-hero.jpg";
+import teamImage from "@/assets/team.jpg";
+import { faculty } from "@/components/constants/indext";
 
 const Faculty = () => {
-  const faculty = [
-    {
-      name: "Prof. Olayinka Omigbodun",
-      credentials: "FAS, FNAMed, FAMedS",
-      title: "Principal Investigator",
-      position: "Professor of Psychiatry & Founding Director, CCAMH, CoMUI",
-      specialization: "Child & Youth Psychiatry, Women's Mental Health",
-      description: "Leading expert in child and adolescent psychiatry with extensive experience in mental health research and policy development across Sub-Saharan Africa.",
-      profileUrl: "https://www.com.ui.edu.ng/index.php/prof-olayinka-o-omigbodun",
-      image: facultyPlaceholder1,
-      achievements: [
-        "Founding Director, Centre for Child and Adolescent Mental Health",
-        "Fellow of the Academy of Science (FAS)",
-        "Fellow of the Nigerian Academy of Medicine (FNAMed)",
-        "Fellow of the Academy of Medical Sciences (FAMedS)"
-      ]
-    },
-    {
-      name: "Prof. Oyindamola B. Yusuf",
-      credentials: "PhD",
-      title: "Co-Principal Investigator",
-      position: "Professor of Biostatistics, CoMUI",
-      specialization: "Statistical Analysis & Mathematical Modelling",
-      description: "Renowned biostatistician with expertise in advanced statistical methods and mathematical modelling for health research and policy applications.",
-      profileUrl: "https://com.ui.edu.ng/index.php/prof-oyindamola-b-yusuf",
-      image: facultyPlaceholder2,
-      achievements: [
-        "Professor of Biostatistics",
-        "Expert in Statistical Analysis",
-        "Mathematical Modelling Specialist",
-        "Health Research Methodology Leader"
-      ]
-    },
-    {
-      name: "Dr. Eniola A. Bamgboye",
-      credentials: "PhD",
-      title: "Co-Principal Investigator", 
-      position: "Senior Lecturer, CoMUI",
-      specialization: "Clinical Epidemiology, Spatial Modelling, Health Economics",
-      description: "Specialist in clinical epidemiology with particular expertise in spatial modelling and health economics applications in Sub-Saharan Africa.",
-      profileUrl: "https://cartafrica.org/fellows-and-graduate/eniola-bamgboye/",
-      image: facultyPlaceholder3,
-      achievements: [
-        "Clinical Epidemiology Expert",
-        "Spatial Modelling Specialist", 
-        "Health Economics Researcher",
-        "CARTA Fellow"
-      ]
-    }
-  ];
+  const navigate = useNavigate();
+
+  const handleFacultyClick = (index: number) => {
+    navigate(`/faculty/${index}`);
+  };
 
   const expertiseAreas = [
     {
@@ -112,9 +67,9 @@ const Faculty = () => {
     >
       {/* Hero Section */}
       <motion.section
-        className="py-24 relative overflow-hidden min-h-[90vh]"
+        className="pt-24 relative overflow-hidden min-h-[90vh]"
         style={{
-          backgroundImage: `linear-gradient(rgba(7, 59, 58, 0.9), rgba(7, 59, 58, 0.85)), url(${facultyHeroImage})`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url(${teamImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -124,21 +79,21 @@ const Faculty = () => {
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col justify-center items-center min-h-[90vh]">
           <motion.div
-            className="text-center mb-16"
+            className="text-center "
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
             <motion.h1
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white"
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.4, duration: 0.6 }}
             >
-              Meet Our{" "}
-              <span className="bg-gradient-accent bg-clip-text text-transparent">
+              Meet Our
+              {/* <span className="bg-gradient-accent bg-clip-text text-transparent"> */}
                 Expert Team
-              </span>
+              {/* </span> */}
             </motion.h1>
             <motion.p
               className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed"
@@ -163,104 +118,72 @@ const Faculty = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <div className="space-y-12">
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+              Our Faculty Members
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Click on any faculty member to learn more about their expertise and achievements
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {faculty.map((member, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * index, duration: 0.6 }}
                 viewport={{ once: true }}
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ 
+                  boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+                  transition: { duration: 0.3 }
+                }}
+                className="cursor-pointer"
+                onClick={() => handleFacultyClick(index)}
               >
-                <Card className="shadow-elegant hover:shadow-hero transition-all duration-300 overflow-hidden">
-                  <div className="md:flex">
-                    <div className="md:w-1/3 relative overflow-hidden">
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        className="w-full h-64 md:h-full object-cover transition-transform duration-300 hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
-                    </div>
-                    <div className="md:w-2/3">
-                      <CardHeader>
-                        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
-                          <div className="flex-1">
-                            <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-                              <CardTitle className="text-xl lg:text-2xl text-foreground">
-                                {member.name}
-                              </CardTitle>
-                              <Badge variant="secondary" className="w-fit">
-                                {member.credentials}
-                              </Badge>
-                            </div>
-                            <div className="space-y-2 mb-4">
-                              <Badge
-                                variant="outline"
-                                className="bg-gradient-primary text-white border-0"
-                              >
-                                {member.title}
-                              </Badge>
-                              <p className="text-base lg:text-lg font-medium text-primary">
-                                {member.position}
-                              </p>
-                              <p className="text-sm lg:text-base text-muted-foreground font-medium">
-                                <span className="text-foreground">
-                                  Specialization:
-                                </span>{" "}
-                                {member.specialization}
-                              </p>
-                            </div>
-                          </div>
-                          <Button
-                            variant="outline"
-                            asChild
-                            className="w-full sm:w-auto"
-                          >
-                            <a
-                              href={member.profileUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              View Profile{" "}
-                              <ExternalLink className="ml-2 h-4 w-4" />
-                            </a>
-                          </Button>
-                        </div>
-                      </CardHeader>
-                      <CardContent>
-                        <CardDescription className="text-base leading-relaxed mb-6">
-                          {member.description}
-                        </CardDescription>
+                <Card className="shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col group border-0 hover:border hover:border-primary/20">
+                  {/* Faculty Image */}
+                  <div className="relative overflow-hidden aspect-square">
+                    <motion.img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-110"
+                      whileHover={{ scale: 1.1 }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    
+                    {/* Hover overlay with view details */}
+                    <motion.div
+                      className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      initial={{ scale: 0.8 }}
+                      whileHover={{ scale: 1 }}
+                    >
+                      <div className="bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 flex items-center gap-2 text-primary font-medium">
+                        <span>View Details</span>
+                        <ChevronRight className="h-4 w-4" />
+                      </div>
+                    </motion.div>
+                  </div>
 
-                        <div>
-                          <h4 className="font-semibold text-foreground mb-3">
-                            Key Achievements:
-                          </h4>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            {member.achievements.map((achievement, idx) => (
-                              <motion.div
-                                key={idx}
-                                className="flex items-center space-x-3"
-                                initial={{ opacity: 0, x: -10 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                transition={{
-                                  delay: 0.3 + 0.1 * idx,
-                                  duration: 0.4,
-                                }}
-                                viewport={{ once: true }}
-                              >
-                                <Award className="h-4 w-4 text-primary flex-shrink-0" />
-                                <span className="text-sm text-muted-foreground">
-                                  {achievement}
-                                </span>
-                              </motion.div>
-                            ))}
-                          </div>
-                        </div>
-                      </CardContent>
-                    </div>
+                  {/* Faculty Info */}
+                  <div className="flex-1 flex flex-col justify-center">
+                    <CardHeader className="text-center space-y-3 pb-6">
+                      <CardTitle className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                        {member.name}
+                      </CardTitle>
+                      <div className="space-y-2">
+                        <p className="text-base font-medium text-primary">
+                          {member.position}
+                        </p>
+                      </div>
+                    </CardHeader>
                   </div>
                 </Card>
               </motion.div>

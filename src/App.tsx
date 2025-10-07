@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Faculty from "./pages/Faculty";
+import FacultyDetail from "./pages/FacultyDetail";
 import Resources from "./pages/Resources";
 import News from "./pages/News";
 import LmsDashboard from "./pages/LmsDashboard";
@@ -34,6 +35,7 @@ const App = () => (
 
               <Route path="/about" element={<About />} />
               <Route path="/faculty" element={<Faculty />} />
+              <Route path="/faculty/:id" element={<FacultyDetail />} />
               <Route path="/resources" element={<Resources />} />
               <Route path="/news" element={<News />} />
               <Route path="/lms" element={<LmsDashboard />} />
